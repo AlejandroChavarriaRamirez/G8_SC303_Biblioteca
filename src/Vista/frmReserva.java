@@ -113,7 +113,7 @@ public class frmReserva extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIdUsuario)
                             .addComponent(txtEstado)
-                            .addComponent(txtIdLibro))))
+                            .addComponent(txtIdLibro, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

@@ -66,7 +66,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtIdUsuario" max="32767" attributes="0"/>
                               <Component id="txtEstado" max="32767" attributes="0"/>
-                              <Component id="txtIdLibro" max="32767" attributes="0"/>
+                              <Component id="txtIdLibro" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

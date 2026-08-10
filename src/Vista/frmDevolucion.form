@@ -101,12 +101,12 @@
                       <Component id="txtFechaDevolucion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtIdPrestamo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -114,7 +114,7 @@
                       <Component id="btnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
