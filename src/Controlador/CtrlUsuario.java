@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
  *
  * @author aleja
  */
+
+
 public class CtrlUsuario implements ActionListener {
 
     private final Usuario modelo;

@@ -39,13 +39,15 @@ public class frmLibro extends javax.swing.JFrame {
         txtAutor = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
         txtEditorial = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel1.setText("ID Libro:");
 
@@ -57,25 +59,35 @@ public class frmLibro extends javax.swing.JFrame {
 
         jLabel5.setText("Editorial:");
 
+        txtIdLibro.setBackground(new java.awt.Color(255, 255, 255));
         txtIdLibro.addActionListener(this::txtIdLibroActionPerformed);
 
+        txtTitulo.setBackground(new java.awt.Color(255, 255, 255));
         txtTitulo.addActionListener(this::txtTituloActionPerformed);
 
+        txtAutor.setBackground(new java.awt.Color(255, 255, 255));
         txtAutor.addActionListener(this::txtAutorActionPerformed);
 
+        txtCategoria.setBackground(new java.awt.Color(255, 255, 255));
         txtCategoria.addActionListener(this::txtCategoriaActionPerformed);
 
+        txtEditorial.setBackground(new java.awt.Color(255, 255, 255));
         txtEditorial.addActionListener(this::txtEditorialActionPerformed);
 
-        jButton1.setText("jButton1");
+        btnGuardar.setBackground(new java.awt.Color(0, 51, 51));
+        btnGuardar.setText("Guardar");
 
-        jButton2.setText("jButton2");
+        btnModificar.setBackground(new java.awt.Color(0, 51, 102));
+        btnModificar.setText("Modificar");
 
-        jButton3.setText("jButton3");
+        btnEliminar.setBackground(new java.awt.Color(102, 0, 0));
+        btnEliminar.setText("Eliminar");
 
-        jButton4.setText("jButton4");
+        btnBuscar.setBackground(new java.awt.Color(102, 0, 102));
+        btnBuscar.setText("Buscar");
 
-        jButton5.setText("jButton5");
+        btnLimpiar.setBackground(new java.awt.Color(102, 51, 0));
+        btnLimpiar.setText("Limpiar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,12 +115,12 @@ public class frmLibro extends javax.swing.JFrame {
                             .addComponent(txtTitulo)
                             .addComponent(txtAutor))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,27 +130,27 @@ public class frmLibro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtIdLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnGuardar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btnModificar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(btnEliminar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(btnLimpiar))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -202,21 +214,21 @@ public class frmLibro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnGuardar;
+    public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtAutor;
-    private javax.swing.JTextField txtCategoria;
-    private javax.swing.JTextField txtEditorial;
-    private javax.swing.JTextField txtIdLibro;
-    private javax.swing.JTextField txtTitulo;
+    public javax.swing.JTextField txtAutor;
+    public javax.swing.JTextField txtCategoria;
+    public javax.swing.JTextField txtEditorial;
+    public javax.swing.JTextField txtIdLibro;
+    public javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
