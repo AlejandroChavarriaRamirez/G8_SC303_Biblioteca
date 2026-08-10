@@ -8,6 +8,35 @@ package Biblioteca;
  *
  * @author aleja
  */
+
+import Controlador.CtrlUsuario;
+import Controlador.CtrlLibro;
+import Controlador.CtrlReserva;
+import Controlador.CtrlPrestamo;
+import Controlador.CtrlDevolucion;
+import Controlador.CtrlMulta;
+import Controlador.CtrlReporte;
+import Modelo.Usuario;
+import Modelo.SentenciasUsuario;
+import Modelo.Libro;
+import Modelo.SentenciasLibro;
+import Modelo.Reserva;
+import Modelo.SentenciasReserva;
+import Modelo.Prestamo;
+import Modelo.SentenciasPrestamo;
+import Modelo.Devolucion;
+import Modelo.SentenciasDevolucion;
+import Modelo.Multa;
+import Modelo.SentenciasMulta;
+import Modelo.Reporte;
+import Modelo.SentenciasReporte;
+import Vista.frmUsuario;
+import Vista.frmLibro;
+import Vista.frmReserva;
+import Vista.frmPrestamo;
+import Vista.frmDevolucion;
+import Vista.frmMulta;
+import Vista.frmReporte;
 public class Menu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
