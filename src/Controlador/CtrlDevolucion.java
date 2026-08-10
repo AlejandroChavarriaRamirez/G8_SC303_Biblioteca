@@ -6,6 +6,11 @@ package Controlador;
 
 import Modelo.Devolucion;
 import Modelo.SentenciasDevolucion;
+import Modelo.Prestamo;
+import Modelo.SentenciasPrestamo;
+import Modelo.Multa;
+import Modelo.SentenciasMulta;
+import Modelo.SentenciasLibro;
 import Vista.frmDevolucion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +20,14 @@ import javax.swing.JOptionPane;
  *
  * @author aleja
  */
-
 public class CtrlDevolucion implements ActionListener {
 
     private final Devolucion modelo;
     private final SentenciasDevolucion consultas;
     private final frmDevolucion vista;
+    private final SentenciasPrestamo consultasPrestamo = new SentenciasPrestamo();
+    private final SentenciasMulta consultasMulta = new SentenciasMulta();
+    private final SentenciasLibro consultasLibro = new SentenciasLibro();
 
     public CtrlDevolucion(Devolucion modelo, SentenciasDevolucion consultas, frmDevolucion vista) {
         this.modelo = modelo;
@@ -53,7 +60,26 @@ public class CtrlDevolucion implements ActionListener {
                 modelo.setFechaDevolucion(vista.txtFechaDevolucion.getText());
                 modelo.setIdPrestamo(Integer.parseInt(vista.txtIdPrestamo.getText()));
                 if (consultas.registrar(modelo)) {
-                    JOptionPane.showMessageDialog(null, "Registro guardado correctamente");
+                    //buscar el prestamo para comparar la fecha limite
+                    Prestamo pre = new Prestamo();
+                    pre.setIdPrestamo(modelo.getIdPrestamo());
+                    if (consultasPrestamo.buscar(pre)) {
+                        //el libro vuelve a estar disponible
+                        consultasLibro.actualizarEstado(pre.getIdLibro(), "disponible");
+                        //las fechas se escriben en formato aaaa-mm-dd
+                        if (modelo.getFechaDevolucion().compareTo(pre.getFechaLimite()) > 0) {
+                            Multa mul = new Multa();
+                            mul.setIdMulta(modelo.getIdDevolucion());
+                            mul.setMonto(1000);
+                            mul.setIdDevolucion(modelo.getIdDevolucion());
+                            consultasMulta.registrar(mul);
+                            JOptionPane.showMessageDialog(null, "Registro guardado. Se genero una multa de 1000 por atraso");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Registro guardado correctamente");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Registro guardado correctamente");
+                    }
                     Limpiar();
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al guardar");

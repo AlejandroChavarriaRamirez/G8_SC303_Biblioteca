@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Reserva;
 import Modelo.SentenciasReserva;
+import Modelo.SentenciasLibro;
 import Vista.frmReserva;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,7 @@ public class CtrlReserva implements ActionListener {
     private final Reserva modelo;
     private final SentenciasReserva consultas;
     private final frmReserva vista;
+    private final SentenciasLibro consultasLibro = new SentenciasLibro();
 
     public CtrlReserva(Reserva modelo, SentenciasReserva consultas, frmReserva vista) {
         this.modelo = modelo;
@@ -55,7 +57,11 @@ public class CtrlReserva implements ActionListener {
                 modelo.setEstado(vista.txtEstado.getText());
                 modelo.setIdLibro(Integer.parseInt(vista.txtIdLibro.getText()));
                 modelo.setIdUsuario(Integer.parseInt(vista.txtIdUsuario.getText()));
-                if (consultas.registrar(modelo)) {
+                String estado = consultasLibro.consultarEstado(modelo.getIdLibro());
+                if (estado == null || !estado.equals("disponible")) {
+                    JOptionPane.showMessageDialog(null, "El libro no esta disponible para reserva");
+                } else if (consultas.registrar(modelo)) {
+                    consultasLibro.actualizarEstado(modelo.getIdLibro(), "reservado");
                     JOptionPane.showMessageDialog(null, "Registro guardado correctamente");
                     Limpiar();
                 } else {

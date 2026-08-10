@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo;
-
+ 
 import java.sql.*;
+ 
 /**
  *
  * @author aleja
@@ -69,6 +70,28 @@ public class SentenciasUsuario extends Conexion {
             return false;
         } catch (SQLException e) {
             System.err.println("Error al buscar el usuario: " + e);
+            return false;
+        }
+    }
+ 
+    public boolean login(Usuario usu) {
+        String sql = "SELECT * FROM usuario WHERE correo= ? AND contrasena= ?";
+        try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, usu.getCorreo());
+            ps.setString(2, usu.getContrasena());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    usu.setIdUsuario(rs.getInt("id_usuario"));
+                    usu.setNombre(rs.getString("nombre"));
+                    usu.setCorreo(rs.getString("correo"));
+                    usu.setContrasena(rs.getString("contrasena"));
+                    usu.setRol(rs.getString("rol"));
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException e) {
+            System.err.println("Error al validar el login: " + e);
             return false;
         }
     }

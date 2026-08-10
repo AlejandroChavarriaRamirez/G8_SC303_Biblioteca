@@ -5,12 +5,13 @@
 package Modelo;
 
 import java.sql.*;
+
 /**
  *
  * @author aleja
  */
 public class SentenciasLibro extends Conexion {
- 
+
     public boolean registrar(Libro lib) {
         String sql = "INSERT INTO libro (id_libro, titulo, autor, categoria, editorial) VALUES (?,?,?,?,?)";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -25,7 +26,7 @@ public class SentenciasLibro extends Conexion {
             return false;
         }
     }
- 
+
     public boolean modificar(Libro lib) {
         String sql = "UPDATE libro SET titulo=?, autor=?, categoria=?, editorial=? WHERE id_libro=?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -40,7 +41,7 @@ public class SentenciasLibro extends Conexion {
             return false;
         }
     }
- 
+
     public boolean eliminar(Libro lib) {
         String sql = "DELETE FROM libro WHERE id_libro=?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -51,7 +52,7 @@ public class SentenciasLibro extends Conexion {
             return false;
         }
     }
- 
+
     public boolean buscar(Libro lib) {
         String sql = "SELECT * FROM libro WHERE id_libro= ?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -69,6 +70,34 @@ public class SentenciasLibro extends Conexion {
             return false;
         } catch (SQLException e) {
             System.err.println("Error al buscar el libro: " + e);
+            return false;
+        }
+    }
+
+    public String consultarEstado(int idLibro) {
+        String sql = "SELECT estado FROM libro WHERE id_libro= ?";
+        try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idLibro);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("estado");
+                }
+            }
+            return null;
+        } catch (SQLException e) {
+            System.err.println("Error al consultar el estado del libro: " + e);
+            return null;
+        }
+    }
+
+    public boolean actualizarEstado(int idLibro, String estado) {
+        String sql = "UPDATE libro SET estado=? WHERE id_libro=?";
+        try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, estado);
+            ps.setInt(2, idLibro);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar el estado del libro: " + e);
             return false;
         }
     }

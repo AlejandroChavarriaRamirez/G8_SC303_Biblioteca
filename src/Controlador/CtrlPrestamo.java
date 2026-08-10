@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Prestamo;
 import Modelo.SentenciasPrestamo;
+import Modelo.SentenciasLibro;
 import Vista.frmPrestamo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,14 +14,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author aleja
+ * @author Usuario
  */
-
 public class CtrlPrestamo implements ActionListener {
 
     private final Prestamo modelo;
     private final SentenciasPrestamo consultas;
     private final frmPrestamo vista;
+    private final SentenciasLibro consultasLibro = new SentenciasLibro();
 
     public CtrlPrestamo(Prestamo modelo, SentenciasPrestamo consultas, frmPrestamo vista) {
         this.modelo = modelo;
@@ -56,7 +57,11 @@ public class CtrlPrestamo implements ActionListener {
                 modelo.setFechaLimite(vista.txtFechaLimite.getText());
                 modelo.setIdLibro(Integer.parseInt(vista.txtIdLibro.getText()));
                 modelo.setIdUsuario(Integer.parseInt(vista.txtIdUsuario.getText()));
-                if (consultas.registrar(modelo)) {
+                String estado = consultasLibro.consultarEstado(modelo.getIdLibro());
+                if (estado == null || !estado.equals("disponible")) {
+                    JOptionPane.showMessageDialog(null, "El libro no esta disponible para prestamo");
+                } else if (consultas.registrar(modelo)) {
+                    consultasLibro.actualizarEstado(modelo.getIdLibro(), "prestado");
                     JOptionPane.showMessageDialog(null, "Registro guardado correctamente");
                     Limpiar();
                 } else {
