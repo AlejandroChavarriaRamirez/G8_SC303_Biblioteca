@@ -44,6 +44,7 @@ public class CtrlLibro implements ActionListener {
         vista.txtAutor.setText("");
         vista.txtCategoria.setText("");
         vista.txtEditorial.setText("");
+        vista.txtCantidad.setText("");
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -55,6 +56,7 @@ public class CtrlLibro implements ActionListener {
                 modelo.setAutor(vista.txtAutor.getText());
                 modelo.setCategoria(vista.txtCategoria.getText());
                 modelo.setEditorial(vista.txtEditorial.getText());
+                modelo.setCantidad(Integer.parseInt(vista.txtCantidad.getText()));
                 if (consultas.registrar(modelo)) {
                     JOptionPane.showMessageDialog(null, "Registro guardado correctamente");
                     Limpiar();
@@ -73,6 +75,7 @@ public class CtrlLibro implements ActionListener {
                 modelo.setAutor(vista.txtAutor.getText());
                 modelo.setCategoria(vista.txtCategoria.getText());
                 modelo.setEditorial(vista.txtEditorial.getText());
+                modelo.setCantidad(Integer.parseInt(vista.txtCantidad.getText()));
                 if (consultas.modificar(modelo)) {
                     JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
                     Limpiar();
@@ -107,6 +110,7 @@ public class CtrlLibro implements ActionListener {
                     vista.txtAutor.setText(modelo.getAutor());
                     vista.txtCategoria.setText(modelo.getCategoria());
                     vista.txtEditorial.setText(modelo.getEditorial());
+                    vista.txtCantidad.setText(String.valueOf(modelo.getCantidad()));
                 } else {
                     JOptionPane.showMessageDialog(null, "Registro no encontrado");
                 }

@@ -6,20 +6,24 @@ package Modelo;
 
 import java.sql.*;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author aleja
  */
+
 public class SentenciasLibro extends Conexion {
 
     public boolean registrar(Libro lib) {
-        String sql = "INSERT INTO libro (id_libro, titulo, autor, categoria, editorial) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO libro (id_libro, titulo, autor, categoria, editorial, cantidad) VALUES (?,?,?,?,?,?)";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, lib.getIdLibro());
             ps.setString(2, lib.getTitulo());
             ps.setString(3, lib.getAutor());
             ps.setString(4, lib.getCategoria());
             ps.setString(5, lib.getEditorial());
+            ps.setInt(6, lib.getCantidad());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("Error al registrar libro: " + e);
@@ -28,13 +32,14 @@ public class SentenciasLibro extends Conexion {
     }
 
     public boolean modificar(Libro lib) {
-        String sql = "UPDATE libro SET titulo=?, autor=?, categoria=?, editorial=? WHERE id_libro=?";
+        String sql = "UPDATE libro SET titulo=?, autor=?, categoria=?, editorial=?, cantidad=? WHERE id_libro=?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, lib.getTitulo());
             ps.setString(2, lib.getAutor());
             ps.setString(3, lib.getCategoria());
             ps.setString(4, lib.getEditorial());
-            ps.setInt(5, lib.getIdLibro());
+            ps.setInt(5, lib.getCantidad());
+            ps.setInt(6, lib.getIdLibro());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("Error al modificar libro: " + e);
@@ -64,6 +69,7 @@ public class SentenciasLibro extends Conexion {
                     lib.setAutor(rs.getString("autor"));
                     lib.setCategoria(rs.getString("categoria"));
                     lib.setEditorial(rs.getString("editorial"));
+                    lib.setCantidad(rs.getInt("cantidad"));
                     return true;
                 }
             }
@@ -100,5 +106,33 @@ public class SentenciasLibro extends Conexion {
             System.err.println("Error al actualizar el estado del libro: " + e);
             return false;
         }
+    }
+
+    public ArrayList<Libro> buscarTexto(String texto) {
+        ArrayList<Libro> lista = new ArrayList<>();
+        String sql = "SELECT * FROM libro WHERE titulo LIKE ? OR autor LIKE ? OR categoria LIKE ? OR editorial LIKE ? OR estado LIKE ?";
+        try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+            String buscar = "%" + texto + "%";
+            ps.setString(1, buscar);
+            ps.setString(2, buscar);
+            ps.setString(3, buscar);
+            ps.setString(4, buscar);
+            ps.setString(5, buscar);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Libro lib = new Libro();
+                    lib.setIdLibro(rs.getInt("id_libro"));
+                    lib.setTitulo(rs.getString("titulo"));
+                    lib.setAutor(rs.getString("autor"));
+                    lib.setCategoria(rs.getString("categoria"));
+                    lib.setEditorial(rs.getString("editorial"));
+                    lib.setCantidad(rs.getInt("cantidad"));
+                    lista.add(lib);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al buscar libros por texto: " + e);
+        }
+        return lista;
     }
 }

@@ -9,6 +9,7 @@ package Biblioteca;
  * @author aleja
  */
 
+import Controlador.CtrlBuscarLibro;
 import Controlador.CtrlUsuario;
 import Controlador.CtrlLibro;
 import Controlador.CtrlReserva;
@@ -31,6 +32,7 @@ import Modelo.Multa;
 import Modelo.SentenciasMulta;
 import Modelo.Reporte;
 import Modelo.SentenciasReporte;
+import Vista.frmBuscarLibro;
 import Vista.frmUsuario;
 import Vista.frmLibro;
 import Vista.frmReserva;
@@ -71,6 +73,7 @@ public class Menu extends javax.swing.JFrame {
         mnuMulta = new javax.swing.JMenuItem();
         mnuReporte = new javax.swing.JMenuItem();
         mnuHistorial = new javax.swing.JMenuItem();
+        mnuBuscarLibro = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -122,6 +125,10 @@ public class Menu extends javax.swing.JFrame {
         mnuHistorial.setText("Historial");
         mnuHistorial.addActionListener(this::mnuHistorialActionPerformed);
         Jmenu1.add(mnuHistorial);
+
+        mnuBuscarLibro.setText("Buscar Libro");
+        mnuBuscarLibro.addActionListener(this::mnuBuscarLibroActionPerformed);
+        Jmenu1.add(mnuBuscarLibro);
 
         jMenuBar1.add(Jmenu1);
 
@@ -212,6 +219,14 @@ public class Menu extends javax.swing.JFrame {
         controlador.inicio();
     }//GEN-LAST:event_mnuHistorialActionPerformed
 
+    private void mnuBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBuscarLibroActionPerformed
+        // TODO add your handling code here:
+        SentenciasLibro consultas = new SentenciasLibro();
+        frmBuscarLibro vista = new frmBuscarLibro();
+        CtrlBuscarLibro controlador = new CtrlBuscarLibro(consultas, vista);
+        controlador.inicio();
+    }//GEN-LAST:event_mnuBuscarLibroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +257,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mnuBuscarLibro;
     private javax.swing.JMenuItem mnuDevolucion;
     private javax.swing.JMenuItem mnuHistorial;
     public javax.swing.JMenuItem mnuLibro;
