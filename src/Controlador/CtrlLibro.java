@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author aleja
  */
 public class CtrlLibro implements ActionListener {
 

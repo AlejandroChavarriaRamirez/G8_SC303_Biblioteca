@@ -5,6 +5,7 @@
 package Modelo;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -66,5 +67,22 @@ public class SentenciasMulta extends Conexion {
             System.err.println("Error al buscar la multa: " + e);
             return false;
         }
+    }
+
+    public ArrayList<Multa> todos() {
+        ArrayList<Multa> lista = new ArrayList<>();
+        String sql = "SELECT * FROM multa";
+        try (Connection con = getConexion(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                Multa mul = new Multa();
+                mul.setIdMulta(rs.getInt("id_multa"));
+                mul.setMonto(rs.getInt("monto"));
+                mul.setIdDevolucion(rs.getInt("id_devolucion"));
+                lista.add(mul);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al listar las multas: " + e);
+        }
+        return lista;
     }
 }

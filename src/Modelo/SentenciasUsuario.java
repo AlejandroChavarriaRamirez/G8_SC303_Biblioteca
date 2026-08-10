@@ -5,13 +5,16 @@
 package Modelo;
  
 import java.sql.*;
- 
+
+import java.util.ArrayList;
+
 /**
  *
  * @author aleja
  */
+
 public class SentenciasUsuario extends Conexion {
- 
+
     public boolean registrar(Usuario usu) {
         String sql = "INSERT INTO usuario (id_usuario, nombre, correo, contrasena, rol) VALUES (?,?,?,?,?)";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -26,7 +29,7 @@ public class SentenciasUsuario extends Conexion {
             return false;
         }
     }
- 
+
     public boolean modificar(Usuario usu) {
         String sql = "UPDATE usuario SET nombre=?, correo=?, contrasena=?, rol=? WHERE id_usuario=?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -41,7 +44,7 @@ public class SentenciasUsuario extends Conexion {
             return false;
         }
     }
- 
+
     public boolean eliminar(Usuario usu) {
         String sql = "DELETE FROM usuario WHERE id_usuario=?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -52,7 +55,7 @@ public class SentenciasUsuario extends Conexion {
             return false;
         }
     }
- 
+
     public boolean buscar(Usuario usu) {
         String sql = "SELECT * FROM usuario WHERE id_usuario= ?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -73,7 +76,7 @@ public class SentenciasUsuario extends Conexion {
             return false;
         }
     }
- 
+
     public boolean login(Usuario usu) {
         String sql = "SELECT * FROM usuario WHERE correo= ? AND contrasena= ?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -94,5 +97,24 @@ public class SentenciasUsuario extends Conexion {
             System.err.println("Error al validar el login: " + e);
             return false;
         }
+    }
+
+    public ArrayList<Usuario> todos() {
+        ArrayList<Usuario> lista = new ArrayList<>();
+        String sql = "SELECT * FROM usuario";
+        try (Connection con = getConexion(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                Usuario usu = new Usuario();
+                usu.setIdUsuario(rs.getInt("id_usuario"));
+                usu.setNombre(rs.getString("nombre"));
+                usu.setCorreo(rs.getString("correo"));
+                usu.setContrasena(rs.getString("contrasena"));
+                usu.setRol(rs.getString("rol"));
+                lista.add(usu);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al listar los usuarios: " + e);
+        }
+        return lista;
     }
 }

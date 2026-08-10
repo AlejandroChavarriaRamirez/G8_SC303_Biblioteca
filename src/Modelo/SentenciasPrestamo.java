@@ -96,4 +96,20 @@ public class SentenciasPrestamo extends Conexion {
         }
         return lista;
     }
+
+    public int contarPrestamos(int idLibro) {
+        String sql = "SELECT COUNT(*) FROM prestamo WHERE id_libro=?";
+        try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idLibro);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+            return 0;
+        } catch (SQLException e) {
+            System.err.println("Error al contar prestamos: " + e);
+            return 0;
+        }
+    }
 }

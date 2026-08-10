@@ -5,14 +5,12 @@
 package Modelo;
 
 import java.sql.*;
-
 import java.util.ArrayList;
 
 /**
  *
- * @author aleja
+ * @author Usuario
  */
-
 public class SentenciasLibro extends Conexion {
 
     public boolean registrar(Libro lib) {
@@ -132,6 +130,26 @@ public class SentenciasLibro extends Conexion {
             }
         } catch (SQLException e) {
             System.err.println("Error al buscar libros por texto: " + e);
+        }
+        return lista;
+    }
+
+    public ArrayList<Libro> todos() {
+        ArrayList<Libro> lista = new ArrayList<>();
+        String sql = "SELECT * FROM libro";
+        try (Connection con = getConexion(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                Libro lib = new Libro();
+                lib.setIdLibro(rs.getInt("id_libro"));
+                lib.setTitulo(rs.getString("titulo"));
+                lib.setAutor(rs.getString("autor"));
+                lib.setCategoria(rs.getString("categoria"));
+                lib.setEditorial(rs.getString("editorial"));
+                lib.setCantidad(rs.getInt("cantidad"));
+                lista.add(lib);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al listar los libros: " + e);
         }
         return lista;
     }

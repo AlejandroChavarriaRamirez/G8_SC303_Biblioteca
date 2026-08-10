@@ -74,6 +74,7 @@ public class Menu extends javax.swing.JFrame {
         mnuReporte = new javax.swing.JMenuItem();
         mnuHistorial = new javax.swing.JMenuItem();
         mnuBuscarLibro = new javax.swing.JMenuItem();
+        mnuReportes = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -129,6 +130,9 @@ public class Menu extends javax.swing.JFrame {
         mnuBuscarLibro.setText("Buscar Libro");
         mnuBuscarLibro.addActionListener(this::mnuBuscarLibroActionPerformed);
         Jmenu1.add(mnuBuscarLibro);
+
+        mnuReportes.setText("Reportes");
+        Jmenu1.add(mnuReportes);
 
         jMenuBar1.add(Jmenu1);
 
@@ -264,6 +268,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuMulta;
     private javax.swing.JMenuItem mnuPrestamo;
     private javax.swing.JMenuItem mnuReporte;
+    private javax.swing.JMenuItem mnuReportes;
     public javax.swing.JMenuItem mnuReserva;
     public javax.swing.JMenuItem mnuUsuario;
     // End of variables declaration//GEN-END:variables
