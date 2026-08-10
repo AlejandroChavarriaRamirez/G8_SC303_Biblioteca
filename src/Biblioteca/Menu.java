@@ -18,6 +18,7 @@ import Controlador.CtrlDevolucion;
 import Controlador.CtrlHistorial;
 import Controlador.CtrlMulta;
 import Controlador.CtrlReporte;
+import Controlador.CtrlReportes;
 import Modelo.Usuario;
 import Modelo.SentenciasUsuario;
 import Modelo.Libro;
@@ -41,6 +42,7 @@ import Vista.frmDevolucion;
 import Vista.frmHistorial;
 import Vista.frmMulta;
 import Vista.frmReporte;
+import Vista.frmReportes;
 public class Menu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
@@ -132,6 +134,7 @@ public class Menu extends javax.swing.JFrame {
         Jmenu1.add(mnuBuscarLibro);
 
         mnuReportes.setText("Reportes");
+        mnuReportes.addActionListener(this::mnuReportesActionPerformed);
         Jmenu1.add(mnuReportes);
 
         jMenuBar1.add(Jmenu1);
@@ -230,6 +233,13 @@ public class Menu extends javax.swing.JFrame {
         CtrlBuscarLibro controlador = new CtrlBuscarLibro(consultas, vista);
         controlador.inicio();
     }//GEN-LAST:event_mnuBuscarLibroActionPerformed
+
+    private void mnuReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuReportesActionPerformed
+        // TODO add your handling code here:
+        frmReportes vista = new frmReportes();
+        CtrlReportes controlador = new CtrlReportes(vista);
+        controlador.inicio();
+    }//GEN-LAST:event_mnuReportesActionPerformed
 
     /**
      * @param args the command line arguments
