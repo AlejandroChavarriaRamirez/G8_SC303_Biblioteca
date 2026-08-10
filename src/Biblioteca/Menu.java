@@ -14,6 +14,7 @@ import Controlador.CtrlLibro;
 import Controlador.CtrlReserva;
 import Controlador.CtrlPrestamo;
 import Controlador.CtrlDevolucion;
+import Controlador.CtrlHistorial;
 import Controlador.CtrlMulta;
 import Controlador.CtrlReporte;
 import Modelo.Usuario;
@@ -35,6 +36,7 @@ import Vista.frmLibro;
 import Vista.frmReserva;
 import Vista.frmPrestamo;
 import Vista.frmDevolucion;
+import Vista.frmHistorial;
 import Vista.frmMulta;
 import Vista.frmReporte;
 public class Menu extends javax.swing.JFrame {
@@ -57,6 +59,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Jmenu1 = new javax.swing.JMenu();
@@ -67,6 +70,9 @@ public class Menu extends javax.swing.JFrame {
         mnuDevolucion = new javax.swing.JMenuItem();
         mnuMulta = new javax.swing.JMenuItem();
         mnuReporte = new javax.swing.JMenuItem();
+        mnuHistorial = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
 
         Jmenu1.setText("Archivos");
@@ -112,6 +118,10 @@ public class Menu extends javax.swing.JFrame {
         mnuReporte.setText("Reporte");
         mnuReporte.addActionListener(this::mnuReporteActionPerformed);
         Jmenu1.add(mnuReporte);
+
+        mnuHistorial.setText("Historial");
+        mnuHistorial.addActionListener(this::mnuHistorialActionPerformed);
+        Jmenu1.add(mnuHistorial);
 
         jMenuBar1.add(Jmenu1);
 
@@ -194,6 +204,14 @@ public class Menu extends javax.swing.JFrame {
         controlador.inicio();
     }//GEN-LAST:event_mnuReporteActionPerformed
 
+    private void mnuHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuHistorialActionPerformed
+        // TODO add your handling code here:
+        SentenciasPrestamo consultas = new SentenciasPrestamo();
+        frmHistorial vista = new frmHistorial();
+        CtrlHistorial controlador = new CtrlHistorial(consultas, vista);
+        controlador.inicio();
+    }//GEN-LAST:event_mnuHistorialActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -222,8 +240,10 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Jmenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnuDevolucion;
+    private javax.swing.JMenuItem mnuHistorial;
     public javax.swing.JMenuItem mnuLibro;
     private javax.swing.JMenuItem mnuMulta;
     private javax.swing.JMenuItem mnuPrestamo;

@@ -4,13 +4,13 @@
  */
 package Modelo;
 
+import java.sql.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author aleja
  */
-
-import java.sql.*;
-
 public class SentenciasPrestamo extends Conexion {
 
     public boolean registrar(Prestamo pre) {
@@ -73,5 +73,27 @@ public class SentenciasPrestamo extends Conexion {
             System.err.println("Error al buscar el prestamo: " + e);
             return false;
         }
+    }
+
+    public ArrayList<Prestamo> buscarPorUsuario(int idUsuario) {
+        ArrayList<Prestamo> lista = new ArrayList<>();
+        String sql = "SELECT * FROM prestamo WHERE id_usuario= ?";
+        try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idUsuario);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Prestamo pre = new Prestamo();
+                    pre.setIdPrestamo(rs.getInt("id_prestamo"));
+                    pre.setFechaEntrega(rs.getString("fecha_entrega"));
+                    pre.setFechaLimite(rs.getString("fecha_limite"));
+                    pre.setIdLibro(rs.getInt("id_libro"));
+                    pre.setIdUsuario(rs.getInt("id_usuario"));
+                    lista.add(pre);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al buscar el historial: " + e);
+        }
+        return lista;
     }
 }
