@@ -8,14 +8,14 @@ package Vista;
  *
  * @author aleja
  */
-public class frmReserva extends javax.swing.JFrame {
+public class frmPrestamo extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmReserva.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmPrestamo.class.getName());
 
     /**
-     * Creates new form frmReserva
+     * Creates new form frmPrestamo
      */
-    public frmReserva() {
+    public frmPrestamo() {
         initComponents();
     }
 
@@ -34,9 +34,9 @@ public class frmReserva extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtIdReserva = new javax.swing.JTextField();
-        txtFechaReserva = new javax.swing.JTextField();
-        txtEstado = new javax.swing.JTextField();
+        txtIdPrestamo = new javax.swing.JTextField();
+        txtFechaEntrega = new javax.swing.JTextField();
+        txtFechaLimite = new javax.swing.JTextField();
         txtIdLibro = new javax.swing.JTextField();
         txtIdUsuario = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
@@ -49,24 +49,24 @@ public class frmReserva extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel1.setText("ID Reserva:");
+        jLabel1.setText("ID Prestamo:");
 
-        jLabel2.setText("Fecha Reserva: ");
+        jLabel2.setText("Fecha Entrega:");
 
-        jLabel3.setText("Estado:");
+        jLabel3.setText("Fecha Limite:");
 
         jLabel4.setText("ID Libro:");
 
         jLabel5.setText("ID Usuario:");
 
-        txtIdReserva.setBackground(new java.awt.Color(255, 255, 255));
-        txtIdReserva.addActionListener(this::txtIdReservaActionPerformed);
+        txtIdPrestamo.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdPrestamo.addActionListener(this::txtIdPrestamoActionPerformed);
 
-        txtFechaReserva.setBackground(new java.awt.Color(255, 255, 255));
-        txtFechaReserva.addActionListener(this::txtFechaReservaActionPerformed);
+        txtFechaEntrega.setBackground(new java.awt.Color(255, 255, 255));
+        txtFechaEntrega.addActionListener(this::txtFechaEntregaActionPerformed);
 
-        txtEstado.setBackground(new java.awt.Color(255, 255, 255));
-        txtEstado.addActionListener(this::txtEstadoActionPerformed);
+        txtFechaLimite.setBackground(new java.awt.Color(255, 255, 255));
+        txtFechaLimite.addActionListener(this::txtFechaLimiteActionPerformed);
 
         txtIdLibro.setBackground(new java.awt.Color(255, 255, 255));
         txtIdLibro.addActionListener(this::txtIdLibroActionPerformed);
@@ -97,49 +97,51 @@ public class frmReserva extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(29, 29, 29)
-                        .addComponent(txtIdReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFechaReserva))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
-                        .addGap(29, 29, 29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdUsuario)
-                            .addComponent(txtEstado)
-                            .addComponent(txtIdLibro))))
-                .addGap(12, 12, 12)
+                            .addComponent(txtFechaLimite)
+                            .addComponent(txtIdLibro)
+                            .addComponent(txtIdUsuario)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                            .addComponent(txtFechaEntrega))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtIdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtFechaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificar))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtIdPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardar))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModificar)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -151,7 +153,7 @@ public class frmReserva extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,23 +164,23 @@ public class frmReserva extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFechaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaReservaActionPerformed
+    private void txtIdPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPrestamoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaReservaActionPerformed
+    }//GEN-LAST:event_txtIdPrestamoActionPerformed
 
-    private void txtIdReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdReservaActionPerformed
+    private void txtFechaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaEntregaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdReservaActionPerformed
+    }//GEN-LAST:event_txtFechaEntregaActionPerformed
 
-    private void txtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoActionPerformed
+    private void txtFechaLimiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaLimiteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstadoActionPerformed
+    }//GEN-LAST:event_txtFechaLimiteActionPerformed
 
     private void txtIdLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdLibroActionPerformed
         // TODO add your handling code here:
@@ -230,7 +232,7 @@ public class frmReserva extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new frmReserva().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frmPrestamo().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -245,10 +247,10 @@ public class frmReserva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField txtEstado;
-    public javax.swing.JTextField txtFechaReserva;
+    public javax.swing.JTextField txtFechaEntrega;
+    public javax.swing.JTextField txtFechaLimite;
     public javax.swing.JTextField txtIdLibro;
-    public javax.swing.JTextField txtIdReserva;
+    public javax.swing.JTextField txtIdPrestamo;
     public javax.swing.JTextField txtIdUsuario;
     // End of variables declaration//GEN-END:variables
 }
