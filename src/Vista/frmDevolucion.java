@@ -64,14 +64,19 @@ public class frmDevolucion extends javax.swing.JFrame {
         txtIdPrestamo.addActionListener(this::txtIdPrestamoActionPerformed);
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(this::btnGuardarActionPerformed);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,6 +158,26 @@ public class frmDevolucion extends javax.swing.JFrame {
     private void txtIdPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPrestamoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdPrestamoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
