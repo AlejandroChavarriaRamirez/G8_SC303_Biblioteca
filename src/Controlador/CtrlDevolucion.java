@@ -11,6 +11,10 @@ import Modelo.SentenciasPrestamo;
 import Modelo.Multa;
 import Modelo.SentenciasMulta;
 import Modelo.SentenciasLibro;
+import Modelo.Reserva;
+import Modelo.SentenciasReserva;
+import Modelo.Usuario;
+import Modelo.SentenciasUsuario;
 import Vista.frmDevolucion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +22,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author aleja
+ * @author Usuario
  */
 public class CtrlDevolucion implements ActionListener {
 
@@ -28,6 +32,8 @@ public class CtrlDevolucion implements ActionListener {
     private final SentenciasPrestamo consultasPrestamo = new SentenciasPrestamo();
     private final SentenciasMulta consultasMulta = new SentenciasMulta();
     private final SentenciasLibro consultasLibro = new SentenciasLibro();
+    private final SentenciasReserva consultasReserva = new SentenciasReserva();
+    private final SentenciasUsuario consultasUsuario = new SentenciasUsuario();
 
     public CtrlDevolucion(Devolucion modelo, SentenciasDevolucion consultas, frmDevolucion vista) {
         this.modelo = modelo;
@@ -66,6 +72,15 @@ public class CtrlDevolucion implements ActionListener {
                     if (consultasPrestamo.buscar(pre)) {
                         //el libro vuelve a estar disponible
                         consultasLibro.actualizarEstado(pre.getIdLibro(), "disponible");
+                        //revisar si hay una reserva pendiente de ese libro
+                        Reserva res = new Reserva();
+                        res.setIdLibro(pre.getIdLibro());
+                        if (consultasReserva.buscarPendiente(res)) {
+                            Usuario usu = new Usuario();
+                            usu.setIdUsuario(res.getIdUsuario());
+                            consultasUsuario.buscar(usu);
+                            JOptionPane.showMessageDialog(null, "Aviso: el libro esta disponible y fue reservado por " + usu.getNombre());
+                        }
                         //las fechas se escriben en formato aaaa-mm-dd
                         if (modelo.getFechaDevolucion().compareTo(pre.getFechaLimite()) > 0) {
                             Multa mul = new Multa();

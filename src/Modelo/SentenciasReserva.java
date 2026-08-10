@@ -8,7 +8,7 @@ import java.sql.*;
 
 /**
  *
- * @author aleja
+ * @author Usuario
  */
 public class SentenciasReserva extends Conexion {
 
@@ -70,6 +70,27 @@ public class SentenciasReserva extends Conexion {
             return false;
         } catch (SQLException e) {
             System.err.println("Error al buscar la reserva: " + e);
+            return false;
+        }
+    }
+
+    public boolean buscarPendiente(Reserva res) {
+        String sql = "SELECT * FROM reserva WHERE id_libro= ? AND estado='reservado'";
+        try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, res.getIdLibro());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    res.setIdReserva(rs.getInt("id_reserva"));
+                    res.setFechaReserva(rs.getString("fecha_reserva"));
+                    res.setEstado(rs.getString("estado"));
+                    res.setIdLibro(rs.getInt("id_libro"));
+                    res.setIdUsuario(rs.getInt("id_usuario"));
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException e) {
+            System.err.println("Error al buscar reserva pendiente: " + e);
             return false;
         }
     }
