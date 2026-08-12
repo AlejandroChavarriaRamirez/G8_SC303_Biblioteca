@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-08-2026 a las 22:58:46
+-- Tiempo de generación: 13-08-2026 a las 00:38:37
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -38,8 +38,8 @@ CREATE TABLE `devolucion` (
 --
 
 INSERT INTO `devolucion` (`id_devolucion`, `fecha_devolucion`, `id_prestamo`) VALUES
-(1, '2025-08-10', 1),
-(20, '2025-08-15', 20);
+(1, '2026-06-20', 3),
+(2, '2026-06-24', 4);
 
 -- --------------------------------------------------------
 
@@ -62,10 +62,12 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`id_libro`, `titulo`, `autor`, `categoria`, `editorial`, `estado`, `cantidad`) VALUES
-(1, 'Harry Potter', 'Roberto', 'Magia', 'BD380', 'disponible', 1),
-(3, 'Minions', 'Alex', 'Animado', '123', 'prestado', 1),
-(4, 'Shrek', 'Fernando', 'Caricatura', 'd283', 'prestado', 1),
-(20, 'Avengers', 'Juan ', 'Accion', 'SUS29', 'disponible', 1);
+(1, 'Cien Anos de Soledad', 'Gabriel Garcia Marquez', 'Novela', 'Sudamericana', 'disponible', 2),
+(2, 'El Principito', 'Antoine de Saint-Exupery', 'Infantil', 'Salamandra', 'disponible', 3),
+(3, '1984', 'George Orwell', 'Ciencia Ficcion', 'Debolsillo', 'prestado', 1),
+(4, 'Harry Potter y la Piedra Filosofal', 'J.K. Rowling', 'Fantasia', 'Salamandra', 'prestado', 1),
+(5, 'Sapiens', 'Yuval Noah Harari', 'Ensayo', 'Debate', 'disponible', 2),
+(6, 'El Senor de los Anillos', 'J.R.R. Tolkien', 'Fantasia', 'Minotauro', 'disponible', 1);
 
 -- --------------------------------------------------------
 
@@ -105,10 +107,10 @@ CREATE TABLE `prestamo` (
 --
 
 INSERT INTO `prestamo` (`id_prestamo`, `fecha_entrega`, `fecha_limite`, `id_libro`, `id_usuario`) VALUES
-(1, '2025-08-1', '2025-08-05', 1, 1),
-(3, '2026-08-10', '2026-08-15', 4, 1),
-(5, '2026-08-10', '2026-08-18', 3, 1),
-(20, '2025-8-01', '2025-8-10', 20, 1);
+(1, '2026-07-01', '2026-07-15', 3, 3),
+(2, '2026-07-05', '2026-07-20', 4, 3),
+(3, '2026-06-01', '2026-06-10', 5, 3),
+(4, '2026-06-15', '2026-06-25', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -142,7 +144,7 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`id_reserva`, `fecha_reserva`, `estado`, `id_libro`, `id_usuario`) VALUES
-(20, '2025-08-05', 'reservado', 20, 1);
+(1, '2026-07-10', 'reservado', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -154,7 +156,7 @@ CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `correo` varchar(100) NOT NULL,
-  `contrasena` varchar(50) NOT NULL,
+  `contrasena` varchar(64) NOT NULL,
   `rol` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -163,7 +165,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) VALUES
-(1, 'Alejandro', 'alechavarria2022@gmail.com', 'Admin123', 'Admin');
+(1, 'Alejandro Chavarria Ramirez', 'admin@biblioteca.com', '059a50ce956b7ec61527c7ecc0c55b5a009dc54ab4acddce8852b46baa2aba30', 'Administrador'),
+(2, 'Marisol Masis Monge', 'biblio@biblioteca.com', '97ee96a1d8a37712908d5796dd1cbe826e6816e6d6a12620f90d42a4e7183ae5', 'Bibliotecario'),
+(3, 'Daniela Gomez Pena', 'estudiante@biblioteca.com', '119f028546ed571e2d926bab0dcd10f6845832caacfac9fb7d05582801eb87bf', 'Estudiante'),
+(4, 'Usuario Invitado', 'invitado@biblioteca.com', '4ac91b1ce1336218d475fab531db62c45805f44b797a7880f9683da74e8fa777', 'Estudiante');
 
 --
 -- Índices para tablas volcadas
