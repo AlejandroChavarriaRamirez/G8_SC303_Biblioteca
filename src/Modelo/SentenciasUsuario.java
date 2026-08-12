@@ -3,17 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo;
- 
-import java.sql.*;
 
+import java.sql.*;
 import java.util.ArrayList;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
  * @author aleja
  */
-
 public class SentenciasUsuario extends Conexion {
+
+    //cifra la contrasena con SHA-256, segun indicacion de la profesora
+    private String encriptar(String texto) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(texto.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hash) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("Error al encriptar la contrasena: " + e);
+            return texto;
+        }
+    }
 
     public boolean registrar(Usuario usu) {
         String sql = "INSERT INTO usuario (id_usuario, nombre, correo, contrasena, rol) VALUES (?,?,?,?,?)";
@@ -21,7 +37,7 @@ public class SentenciasUsuario extends Conexion {
             ps.setInt(1, usu.getIdUsuario());
             ps.setString(2, usu.getNombre());
             ps.setString(3, usu.getCorreo());
-            ps.setString(4, usu.getContrasena());
+            ps.setString(4, encriptar(usu.getContrasena()));
             ps.setString(5, usu.getRol());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -35,7 +51,7 @@ public class SentenciasUsuario extends Conexion {
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, usu.getNombre());
             ps.setString(2, usu.getCorreo());
-            ps.setString(3, usu.getContrasena());
+            ps.setString(3, encriptar(usu.getContrasena()));
             ps.setString(4, usu.getRol());
             ps.setInt(5, usu.getIdUsuario());
             return ps.executeUpdate() > 0;
@@ -81,7 +97,7 @@ public class SentenciasUsuario extends Conexion {
         String sql = "SELECT * FROM usuario WHERE correo= ? AND contrasena= ?";
         try (Connection con = getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, usu.getCorreo());
-            ps.setString(2, usu.getContrasena());
+            ps.setString(2, encriptar(usu.getContrasena()));
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     usu.setIdUsuario(rs.getInt("id_usuario"));

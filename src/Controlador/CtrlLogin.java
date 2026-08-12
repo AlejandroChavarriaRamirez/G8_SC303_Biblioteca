@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador;
- 
+
 import Modelo.Usuario;
 import Modelo.SentenciasUsuario;
 import Vista.frmLogin;
@@ -11,31 +11,31 @@ import Biblioteca.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
- 
+
 /**
  *
  * @author aleja
  */
-
 public class CtrlLogin implements ActionListener {
- 
+
     private final Usuario modelo;
     private final SentenciasUsuario consultas;
     private final frmLogin vista;
- 
+    private int intentos = 0;
+
     public CtrlLogin(Usuario modelo, SentenciasUsuario consultas, frmLogin vista) {
         this.modelo = modelo;
         this.consultas = consultas;
         this.vista = vista;
         this.vista.btnIngresar.addActionListener(this);
     }
- 
+
     public void inicio() {
         vista.setTitle("Inicio de Sesion");
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
     }
- 
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnIngresar) {
             modelo.setCorreo(vista.txtCorreo.getText());
@@ -47,9 +47,15 @@ public class CtrlLogin implements ActionListener {
                 m.setLocationRelativeTo(null);
                 vista.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Correo o contrasena incorrectos");
+                intentos = intentos + 1;
+                if (intentos >= 3) {
+                    JOptionPane.showMessageDialog(null, "Demasiados intentos fallidos. El programa se cerrara");
+                    vista.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Correo o contrasena incorrectos. Intento " + intentos + " de 3");
+                }
             }
         }
     }
- 
+
 }
