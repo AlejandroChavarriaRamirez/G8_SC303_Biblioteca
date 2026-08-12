@@ -43,6 +43,9 @@ import Vista.frmHistorial;
 import Vista.frmMulta;
 import Vista.frmReporte;
 import Vista.frmReportes;
+import javax.swing.JOptionPane;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 public class Menu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
@@ -77,6 +80,7 @@ public class Menu extends javax.swing.JFrame {
         mnuHistorial = new javax.swing.JMenuItem();
         mnuBuscarLibro = new javax.swing.JMenuItem();
         mnuReportes = new javax.swing.JMenuItem();
+        mnuSimulacion = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -125,6 +129,10 @@ public class Menu extends javax.swing.JFrame {
         mnuReportes.setText("Reportes");
         mnuReportes.addActionListener(this::mnuReportesActionPerformed);
         Jmenu1.add(mnuReportes);
+
+        mnuSimulacion.setText("Simulacion Concurrencia");
+        mnuSimulacion.addActionListener(this::mnuSimulacionActionPerformed);
+        Jmenu1.add(mnuSimulacion);
 
         jMenuBar1.add(Jmenu1);
 
@@ -230,6 +238,21 @@ public class Menu extends javax.swing.JFrame {
         controlador.inicio();
     }//GEN-LAST:event_mnuReportesActionPerformed
 
+    private void mnuSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSimulacionActionPerformed
+        // TODO add your handling code here:
+        
+        int idLibro = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del libro para la simulacion:"));
+        SalaPrestamos sala = new SalaPrestamos();
+        //agrupamos los hilos en 3
+            ExecutorService ejecutor = Executors.newFixedThreadPool(3);
+            for (int i = 1; i <= 5; i++) {//5 clientes intentando prestar el mismo libro
+            ejecutor.execute(new ClientePrestamo(i, idLibro, sala));
+        }
+        ejecutor.shutdown();
+        while (!ejecutor.isTerminated());
+        JOptionPane.showMessageDialog(null, "Simulacion terminada, revisa la ventana Output para ver el resultado");
+    }//GEN-LAST:event_mnuSimulacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +311,7 @@ public class Menu extends javax.swing.JFrame {
     public javax.swing.JMenuItem mnuReporte;
     private javax.swing.JMenuItem mnuReportes;
     public javax.swing.JMenuItem mnuReserva;
+    private javax.swing.JMenuItem mnuSimulacion;
     public javax.swing.JMenuItem mnuUsuario;
     // End of variables declaration//GEN-END:variables
 }
