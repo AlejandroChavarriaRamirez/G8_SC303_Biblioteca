@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-08-2026 a las 00:38:37
+-- Tiempo de generación: 13-08-2026 a las 00:43:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -62,7 +62,7 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`id_libro`, `titulo`, `autor`, `categoria`, `editorial`, `estado`, `cantidad`) VALUES
-(1, 'Cien Anos de Soledad', 'Gabriel Garcia Marquez', 'Novela', 'Sudamericana', 'disponible', 2),
+(1, 'Cien Anos de Soledad', 'Gabriel Garcia Marquez', 'Novela', 'Sudamericana', 'prestado', 2),
 (2, 'El Principito', 'Antoine de Saint-Exupery', 'Infantil', 'Salamandra', 'disponible', 3),
 (3, '1984', 'George Orwell', 'Ciencia Ficcion', 'Debolsillo', 'prestado', 1),
 (4, 'Harry Potter y la Piedra Filosofal', 'J.K. Rowling', 'Fantasia', 'Salamandra', 'prestado', 1),
@@ -165,10 +165,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) VALUES
-(1, 'Alejandro Chavarria Ramirez', 'admin@biblioteca.com', '059a50ce956b7ec61527c7ecc0c55b5a009dc54ab4acddce8852b46baa2aba30', 'Administrador'),
-(2, 'Marisol Masis Monge', 'biblio@biblioteca.com', '97ee96a1d8a37712908d5796dd1cbe826e6816e6d6a12620f90d42a4e7183ae5', 'Bibliotecario'),
-(3, 'Daniela Gomez Pena', 'estudiante@biblioteca.com', '119f028546ed571e2d926bab0dcd10f6845832caacfac9fb7d05582801eb87bf', 'Estudiante'),
-(4, 'Usuario Invitado', 'invitado@biblioteca.com', '4ac91b1ce1336218d475fab531db62c45805f44b797a7880f9683da74e8fa777', 'Estudiante');
+(1, 'Alejandro Chavarria Ramirez', 'admin@gmail.com', '059a50ce956b7ec61527c7ecc0c55b5a009dc54ab4acddce8852b46baa2aba30', 'Administrador'),
+(2, 'Marisol Masis Monge', 'biblio@gmail.com', '97ee96a1d8a37712908d5796dd1cbe826e6816e6d6a12620f90d42a4e7183ae5', 'Bibliotecario'),
+(3, 'Daniela Gomez Pena', 'estudiante@gmail.com', '119f028546ed571e2d926bab0dcd10f6845832caacfac9fb7d05582801eb87bf', 'Estudiante'),
+(4, 'Usuario Invitado', 'invitado@gmail.com', '4ac91b1ce1336218d475fab531db62c45805f44b797a7880f9683da74e8fa777', 'Estudiante');
 
 --
 -- Índices para tablas volcadas

@@ -1,0 +1,40 @@
+CREDENCIALES DE PRUEBA - Sistema Biblioteca (BookStack)
+==========================================================
+
+El sistema tiene 3 roles con menus diferenciados. Usar cualquiera
+de las siguientes cuentas para probar el sistema:
+
+----------------------------------------------------------
+ADMINISTRADOR (ve todas las opciones del menu)
+----------------------------------------------------------
+Nombre:      Alejandro Chavarria Ramirez
+Correo:      admin@gmail.com
+Contrasena:  Admin2026
+
+----------------------------------------------------------
+BIBLIOTECARIO (ve todo excepto Usuario y Reportes)
+----------------------------------------------------------
+Nombre:      Marisol Masis Monge
+Correo:      biblio@gmail.com
+Contrasena:  Biblio2026
+
+----------------------------------------------------------
+ESTUDIANTE (ve solo Buscar Libro, Reserva e Historial)
+----------------------------------------------------------
+Nombre:      Daniela Gomez Pena
+Correo:      estudiante@gmail.com
+Contrasena:  Estudiante2026
+
+----------------------------------------------------------
+ESTUDIANTE (usuario adicional, tiene una reserva activa)
+----------------------------------------------------------
+Nombre:      Usuario Invitado
+Correo:      invitado@gmail.com
+Contrasena:  Diego2026
+
+==========================================================
+NOTA: Las contrasenas se guardan cifradas (SHA-256) en la
+base de datos, por eso no aparecen en texto plano en las
+tablas. Esta es la unica referencia de las contrasenas
+originales para poder iniciar sesion en las pruebas.
+==========================================================
