@@ -43,6 +43,7 @@ public class CtrlLogin implements ActionListener {
             if (consultas.login(modelo)) {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + modelo.getNombre());
                 Menu m = new Menu();
+                m.configurarRol(modelo.getRol());
                 m.setVisible(true);
                 m.setLocationRelativeTo(null);
                 vista.dispose();

@@ -254,7 +254,26 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Menu().setVisible(true));
     }
-
+    
+    public void configurarRol(String rol) {
+        String rolMinuscula = rol.toLowerCase();
+        if (rolMinuscula.contains("admin")) {
+            //el administrador ve todas las opciones, no se oculta nada
+        } else if (rolMinuscula.contains("bibliotecario")) {
+            mnuUsuario.setVisible(false);
+            mnuReporte.setVisible(false);
+            mnuReportes.setVisible(false);
+        } else {
+            //estudiante, solo puede buscar, reservar y ver su historial
+            mnuUsuario.setVisible(false);
+            mnuLibro.setVisible(false);
+            mnuPrestamo.setVisible(false);
+            mnuDevolucion.setVisible(false);
+            mnuMulta.setVisible(false);
+            mnuReporte.setVisible(false);
+            mnuReportes.setVisible(false);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Jmenu1;
     private javax.swing.JLabel jLabel1;
